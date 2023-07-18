@@ -1,0 +1,56 @@
+// [class^="col-"]
+
+$gutter: 5rem;
+$margin-bottom: 8rem;
+
+@mixin floatColor($col-width) {
+  width: $col-width;
+  background-color: red;
+  float: left;
+
+  &:not(:last-child) {
+    margin-right: $gutter;
+  }
+}
+
+.row {
+  max-width: 114rem;
+  background-color: #c2c2c2;
+  margin: 0 auto;
+  color: #fff;
+  text-align: center;
+
+  &:not(:last-child) {
+    margin-bottom: $margin-bottom;
+  }
+
+  &::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+
+  .col-1-of-2 {
+    @include floatColor(calc((100% - #{$gutter}) / 2));
+  }
+
+  .col-1-of-3 {
+    @include floatColor(calc((100% - #{$gutter}* 2) / 3));
+  }
+
+  .col-2-of-3 {
+    @include floatColor(calc((100% - #{$gutter}* 2) * 2 / 3 + #{$gutter}));
+  }
+
+  .col-1-of-4 {
+    @include floatColor(calc((100% - 3 * #{$gutter}) / 4));
+  }
+
+  .col-2-of-4 {
+    @include floatColor(calc((100% - 3 * #{$gutter}) / 2 + #{$gutter}));
+  }
+
+  .col-3-of-4 {
+    @include floatColor(calc((100% - 3 * #{$gutter}) * 3 / 4 + 2 *#{$gutter}));
+  }
+}
